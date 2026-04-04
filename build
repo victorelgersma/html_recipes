@@ -1,0 +1,27 @@
+#!/opt/homebrew/bin/bash
+
+
+# This script uses pandoc to turn all the markdown files under "markdown" into html files under html
+
+#!/opt/homebrew/bin/bash
+
+# Ensure the output directory exists
+mkdir -p html
+
+# Loop through every .md file in the markdown directory
+for md_file in markdown/*.md; do
+    # Check if the file exists (prevents errors if the directory is empty)
+    [ -e "$md_file" ] || continue
+
+    # Get the filename without the path and extension
+    filename=$(basename "$md_file" .md)
+
+    echo "Converting $filename..."
+
+    # Run pandoc
+    # --standalone creates a full HTML document (with <head> and <body>)
+    # -o specifies the output file
+    pandoc "$md_file" -o "html/$filename.html"
+done
+
+echo "Done! Check the 'html' folder."
