@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>My Recipes</title>
-    <link rel="stylesheet" href="https://vjbe.net/tufte.css"/>
+    <link rel="stylesheet" href="https://vjbe.net/tufte.css">
 </head>
 <body>
-    <article>
+    <article class="container">
         <h1>Recipe Index</h1>
         <ul>
             <?php

@@ -19,8 +19,6 @@ for md_file in markdown/*.md; do
     echo "Converting $filename..."
 
     # Run pandoc
-    # --standalone creates a full HTML document (with <head> and <body>)
-    # -o specifies the output file
     pandoc "$md_file" -o "html/$filename.html"
 done
 
