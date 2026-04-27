@@ -206,5 +206,43 @@ hr {
     margin: 2rem 0;
 }
 
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
 
-      </style>
+.recipe-card {
+    background: #2a2a2a;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+
+.view-link {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+</style>

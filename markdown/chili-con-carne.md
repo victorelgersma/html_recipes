@@ -1,5 +1,9 @@
 
-# Ingredientos
+# chili con carne
+![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.28.jpeg)
+![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.39.jpeg)
+
+## Ingredientos
 
 - [ ] 1tsp ground coriander
 - [ ] Fresh cilantro 
@@ -22,9 +26,9 @@
 - [ ] 1 large onion, finely chopped
 
 
-# Instructionos
+## Instructionos
 
-- get losssst in the saucceeee
+- [ ] chop the onion
+...
+- [ ] get losssst in the saucceeee babyyyy. My site, my rules. Whoooooo! 
 
-![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.28.jpeg)
-![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.39.jpeg)

@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>My Recipes</title>
-    <link rel="stylesheet" href="https://vjbe.net/tufte.css">
+    <?php include 'style.php'; ?>
 </head>
+
 <body>
+    <header class="index-header">
+    <h1>Victor’s Kitchen</h1>
+    <hr>
+</header>
     <article class="container">
-        <h1>Recipe Index</h1>
-        <ul>
+        <div class="recipe-grid">
             <?php
             $files = glob("html/*.html");
             if ($files) {
                 foreach ($files as $file) {
                     $slug = basename($file, ".html");
-                    $title = str_replace('-', ' ', $slug);
-                    // Link to the PHP wrapper instead of the static HTML
-                    echo "<li><a href='recipe.php?name=$slug'>$title</a></li>";
+                    $title = ucwords(str_replace('-', ' ', $slug));
+
+                    echo "
+            <a href='recipe.php?name=$slug' class='recipe-card'>
+                <div class='card-content'>
+                    <h3>$title</h3>
+                    <span class='view-link'>View Recipe →</span>
+                </div>
+            </a>";
                 }
-            } else {
-                echo "<li>No recipes found. Run ./build first!</li>";
             }
             ?>
-        </ul>
+        </div>
     </article>
+    <?php include 'footer.php'; ?>
 </body>
+
 </html>

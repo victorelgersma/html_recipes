@@ -1,1 +1,3 @@
-# html_recipes
+# Recipes
+
+A simple site with recipes
