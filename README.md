@@ -1,3 +1,3 @@
 # Recipes
 
-A simple site with recipes
+A simple recipe site.

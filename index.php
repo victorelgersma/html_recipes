@@ -17,13 +17,17 @@
                     $slug = basename($file, ".html");
                     $title = ucwords(str_replace('-', ' ', $slug));
 
+                    // Construct URL for your external CDN
+                    $thumbnail = "https://img.vjbe.net/$slug.webp";
+
                     echo "
-            <a href='recipe.php?name=$slug' class='recipe-card'>
-                <div class='card-content'>
-                    <h3>$title</h3>
-                    <span class='view-link'>View Recipe →</span>
-                </div>
-            </a>";
+        <a href='recipe.php?name=$slug' class='recipe-card'>
+            <div class='card-image' style='background-image: url(\"$thumbnail\"), url(\"img/placeholder.jpg\");'></div>
+            <div class='card-content'>
+                <h3>$title</h3>
+                <span class='view-link'>View Recipe →</span>
+            </div>
+        </a>";
                 }
             }
             ?>

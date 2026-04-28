@@ -9,6 +9,41 @@
   --muted: #a0a0a0;
 }
 
+.recipe-card {
+    overflow: hidden; /* Keeps the image inside the border radius */
+}
+
+
+.card-image {
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #333;
+}
+
+.hero-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.recipe-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
 ul li:has(input[type=checkbox]:checked) {
   text-decoration: line-through;
   color: var(--muted);
@@ -243,6 +278,43 @@ hr {
     color: var(--accent);
     font-size: 0.85rem;
     font-weight: bold;
+}
+
+
+.carousel-container {
+    margin-bottom: 2rem;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars */
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-img {
+    flex: 0 0 100%;
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    scroll-snap-align: start;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+}
+
+.carousel-hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: italic;
 }
 
 </style>

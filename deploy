@@ -2,6 +2,8 @@
 
 ./build
 cd ../
+
+ssh elgersmav@hetzner "rm -rf ~/html/recipes/html"
 deploy recipes recipes
 
 echo "https://recipes.vjbe.net"

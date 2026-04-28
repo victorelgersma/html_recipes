@@ -1,7 +1,5 @@
 
 # chili con carne
-![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.28.jpeg)
-![chili](https://img.vjbe.net/WhatsApp%20Image%202026-04-22%20at%2019.24.39.jpeg)
 
 ## Ingredientos
 
