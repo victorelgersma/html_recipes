@@ -18,19 +18,19 @@
 
         if (!empty($name) && file_exists($path)) {
             $baseUrl = "https://img.vjbe.net/$name";
-            
+
             // 1. Image Carousel (Checks for slug.webp, slug2.webp, slug3.webp, etc.)
             echo '<div class="carousel-container">
                     <div class="carousel-track">';
-            
+
             // Primary Image
             echo "<img src='$baseUrl.webp' class='carousel-img' onerror='this.remove()'>";
-            
+
             // Potential Gallery Images (Checks up to 5)
             for ($i = 2; $i <= 5; $i++) {
                 echo "<img src='{$baseUrl}{$i}.webp' class='carousel-img' onerror='this.remove()'>";
             }
-            
+
             echo '  </div>
                     <div class="carousel-hint" id="carousel-hint">Swipe for more photos ↔</div>
                   </div>';
@@ -55,7 +55,10 @@
         }
         ?>
     </div>
-    <?php include 'footer.php'; ?>
+    <?php
+    $edit_name = $name; // From your existing $name variable
+    include 'footer.php';
+    ?>
 </body>
 
 </html>
