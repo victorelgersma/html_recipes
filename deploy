@@ -6,4 +6,7 @@ cd ../
 ssh elgersmav@hetzner "rm -rf ~/html/recipes/html"
 deploy recipes recipes
 
-echo "https://recipes.vjbe.net"
+url=https://recipes.vjbe.net
+echo "$url"
+
+firefox $url
