@@ -8,10 +8,6 @@
 </head>
 
 <body>
-    <header class="index-header">
-    <h1>Victor’s Kitchen</h1>
-    <hr>
-</header>
     <article class="container">
         <div class="recipe-grid">
             <?php

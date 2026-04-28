@@ -5,7 +5,8 @@
 
 #!/opt/homebrew/bin/bash
 
-# Ensure the output directory exists
+# reset the output directory
+rm -rf html
 mkdir -p html
 
 # Loop through every .md file in the markdown directory
