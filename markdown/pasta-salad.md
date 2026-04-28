@@ -1,7 +1,6 @@
 
 # Mediterranean Avocado Pasta Salad
 
-![](https://img.vjbe.net/26-04-24%2016-17-18%200072.jpg)
 
 - [ ] 500g rotini or farfalle pasta
 - [ ] 1 pint cherry tomatoes halved

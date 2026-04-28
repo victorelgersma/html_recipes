@@ -1,9 +1,6 @@
 
 # Jiso's Savory Beef & Aubergine Stir-Fry
 
-![Victor prepares the aubergine](https://vjbe.net/img/WhatsApp%20Image%202026-04-05%20at%2018.20.52.jpeg)
-![Victor prepares the aubergine](https://vjbe.net/img/WhatsApp%20Image%202026-04-05%20at%2018.20.55.jpeg)
-
 ## 🧑‍🍳 Mise en place
 * [ ] 🍚 Rice, rinsed and ready to boil
 * [ ] 🍆 Aubergine, cut into bite-sized cubes
