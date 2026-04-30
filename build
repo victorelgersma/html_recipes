@@ -1,26 +1,40 @@
 #!/opt/homebrew/bin/bash
 
-
-# This script uses pandoc to turn all the markdown files under "markdown" into html files under html
-
-#!/opt/homebrew/bin/bash
-
-# reset the output directory
+# Reset the output directory
 rm -rf html
 mkdir -p html
 
+# Initialize manifest file
+MANIFEST="manifest.json"
+echo "[" > $MANIFEST
+
 # Loop through every .md file in the markdown directory
-for md_file in markdown/*.md; do
-    # Check if the file exists (prevents errors if the directory is empty)
+FILES=(markdown/*.md)
+COUNT=${#FILES[@]}
+INDEX=0
+
+for md_file in "${FILES[@]}"; do
     [ -e "$md_file" ] || continue
-
-    # Get the filename without the path and extension
     filename=$(basename "$md_file" .md)
-
     echo "Converting $filename..."
 
     # Run pandoc
     pandoc "$md_file" -o "html/$filename.html"
+
+    # Check if image exists (Build-time check)
+    IMAGE_URL="https://img.vjbe.net/$filename.webp"
+    if curl --output /dev/null --silent --head --fail "$IMAGE_URL"; then
+        HAS_IMAGE="true"
+    else
+        HAS_IMAGE="false"
+    fi
+
+    # Append to JSON manifest
+    INDEX=$((INDEX + 1))
+    COMMA=","
+    [ $INDEX -eq $COUNT ] && COMMA=""
+    echo "  {\"slug\": \"$filename\", \"has_image\": $HAS_IMAGE}$COMMA" >> $MANIFEST
 done
 
-echo "Done! Check the 'html' folder."
+echo "]" >> $MANIFEST
+echo "Done! Manifest generated and HTML converted."

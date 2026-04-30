@@ -1,0 +1,13 @@
+[
+  {"slug": "anchovies-pasta", "has_image": false},
+  {"slug": "chili-con-carne", "has_image": true},
+  {"slug": "dahl", "has_image": true},
+  {"slug": "dressing", "has_image": false},
+  {"slug": "eggs", "has_image": false},
+  {"slug": "greek-salad", "has_image": false},
+  {"slug": "hamburgers", "has_image": false},
+  {"slug": "jiso-stir-fry", "has_image": true},
+  {"slug": "kirils-chicken-drumsticks", "has_image": true},
+  {"slug": "pasta-salad", "has_image": true},
+  {"slug": "rice", "has_image": false}
+]
