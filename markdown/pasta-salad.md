@@ -1,6 +1,8 @@
 
-# Mediterranean Avocado Pasta Salad
+# Pasta Salad
 
+
+## Ingredients
 
 - [ ] 500g rotini or farfalle pasta
 - [ ] 1 pint cherry tomatoes halved
@@ -10,8 +12,7 @@
 - [ ] [dressing](https://recipes.vjbe.net/recipe.php?name=dressing)
 - [ ] feta
 
-
-### Step-by-Step Instructions
+## Instructions
 
 1.  Cook your pasta in a large pot of salted water according to the package directions for al dente. Drain and rinse with cold water immediately to stop the cooking process and prevent sticking.
 2.  In a small jar or bowl, combine the olive oil, lemon juice, minced garlic, and oregano. Shake or whisk until emulsified. Add a pinch of salt and pepper to taste.

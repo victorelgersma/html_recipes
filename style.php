@@ -71,16 +71,6 @@ body {
   align-items: center;
 }
 
-.container {
-  width: 100%;
-  max-width: 650px;
-  margin: 2rem auto;
-  padding: 2.5rem;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
 h1 {
   color: var(--accent);
   text-align: center;
@@ -100,7 +90,6 @@ ul, ol {
   list-style-position: inside;
   margin-bottom: 1.5rem;
   padding-left: 0.5rem;
-  width: 100%;
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
@@ -241,12 +230,6 @@ hr {
     margin: 2rem 0;
 }
 
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
 
 .recipe-card {
     background: #2a2a2a;
@@ -315,6 +298,51 @@ hr {
     color: var(--muted);
     margin-top: 10px;
     font-style: italic;
+}
+
+/* 1. Expand the container to allow 3 columns */
+.container {
+    width: 95%;
+    max-width: 1000px; /* Increased from 650px */
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. Force the 3-column grid */
+.recipe-grid {
+    display: grid;
+    /* This creates exactly 3 columns on desktop, scaling down on mobile */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* 3. Ensure cards look good in the new layout */
+.card-image {
+    width: 100%;
+    height: 180px; /* Slightly taller for the wider columns */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid #333;
+}
+
+/* 4. Responsive adjustment: 2 columns on tablets, 1 on mobile */
+@media (max-width: 900px) {
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 1rem;
+    }
 }
 
 </style>
