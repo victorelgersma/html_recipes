@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Recipes</title>
-    <?php include 'style.php'; ?>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
