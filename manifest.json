@@ -9,6 +9,7 @@
   {"slug": "hamburgers", "has_image": false},
   {"slug": "jiso-stir-fry", "has_image": true},
   {"slug": "kirils-chicken-drumsticks", "has_image": true},
+  {"slug": "mac-and-cheese", "has_image": false},
   {"slug": "pasta-salad", "has_image": true},
   {"slug": "rice", "has_image": false},
   {"slug": "steamed-broccoli", "has_image": false},

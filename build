@@ -22,7 +22,7 @@ for md_file in "${FILES[@]}"; do
     pandoc "$md_file" -o "html/$filename.html"
 
     # Check if image exists (Build-time check)
-    IMAGE_URL="https://img.vjbe.net/$filename.webp"
+    IMAGE_URL="https://img.vjbe.net/thumbs/$filename.webp"
     if curl --output /dev/null --silent --head --fail "$IMAGE_URL"; then
         HAS_IMAGE="true"
     else
