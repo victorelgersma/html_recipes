@@ -9,13 +9,17 @@
 
 <body>
     <article class="container">
-        <div class="recipe-grid">
+        <!-- Added Search Bar -->
+        <div class="search-container">
+            <input type="text" id="recipeSearch" placeholder="Search recipes..." autocomplete="off">
+        </div>
+
+        <div class="recipe-grid" id="recipeGrid">
             <?php
             $manifest_file = 'manifest.json';
             if (file_exists($manifest_file)) {
                 $recipes = json_decode(file_get_contents($manifest_file), true);
 
-                // Sort: Recipes with images (true) come before those without (false)
                 usort($recipes, function ($a, $b) {
                     return $b['has_image'] - $a['has_image'];
                 });
@@ -23,12 +27,10 @@
                 foreach ($recipes as $recipe) {
                     $slug = $recipe['slug'];
                     $title = ucwords(str_replace('-', ' ', $slug));
-
-                    // Point specifically to the thumbs directory on your image server
                     $thumbnail = "https://img.vjbe.net/thumbs/$slug.webp";
 
                     echo "
-    <a href='recipe.php?name=$slug' class='recipe-card'>
+    <a href='recipe.php?name=$slug' class='recipe-card' data-title='" . strtolower($title) . "'>
         <div class='card-image' style='background-image: url(\"$thumbnail\"), url(\"img/placeholder.jpg\");'></div>
         <div class='card-content'>
             <h3>$title</h3>
@@ -43,6 +45,24 @@
         </div>
     </article>
     <p>View this project on <a href="https://github.com/victorelgersma/html_recipes">Github</a></p>
-</body>
 
+    <!-- Search Logic -->
+    <script>
+        const searchInput = document.getElementById('recipeSearch');
+        const cards = document.querySelectorAll('.recipe-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
 </html>
