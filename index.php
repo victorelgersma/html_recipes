@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipes</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -44,7 +45,7 @@
             ?>
         </div>
     </article>
-    <p>View this project on <a href="https://github.com/victorelgersma/html_recipes">Github</a></p>
+    <p><a href="https://github.com/victorelgersma/html_recipes">Contribute</a> by opening a PR</p>
 
     <!-- Search Logic -->
     <script>
