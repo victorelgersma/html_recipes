@@ -3,7 +3,6 @@
   {"slug": "chili-con-carne", "has_image": true},
   {"slug": "couscous-salad", "has_image": true},
   {"slug": "dahl", "has_image": true},
-  {"slug": "dressing", "has_image": false},
   {"slug": "eggs", "has_image": false},
   {"slug": "greek-salad", "has_image": false},
   {"slug": "hamburgers", "has_image": false},
@@ -13,5 +12,6 @@
   {"slug": "pasta-salad", "has_image": true},
   {"slug": "rice", "has_image": false},
   {"slug": "steamed-broccoli", "has_image": false},
-  {"slug": "template", "has_image": false}
+  {"slug": "template", "has_image": false},
+  {"slug": "vinaigrette", "has_image": false}
 ]

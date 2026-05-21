@@ -9,7 +9,7 @@
 - [ ] 1 cucumber
 - [ ] red onion
 - [ ] 2 ripe avocados
-- [ ] [dressing](https://recipes.vjbe.net/recipe.php?name=dressing)
+- [ ] [dressing](https://recipes.vjbe.net/recipe.php?name=vinaigrette)
 - [ ] feta
 
 ## Instructions
