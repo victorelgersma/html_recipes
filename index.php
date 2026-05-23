@@ -45,7 +45,6 @@
             ?>
         </div>
     </article>
-    <p><a href="https://github.com/victorelgersma/html_recipes">Contribute</a> by opening a PR</p>
 
     <!-- Search Logic -->
     <script>

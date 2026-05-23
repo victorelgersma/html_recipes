@@ -12,6 +12,7 @@
   {"slug": "pasta-salad", "has_image": true},
   {"slug": "rice", "has_image": false},
   {"slug": "steamed-broccoli", "has_image": false},
-  {"slug": "template", "has_image": false},
-  {"slug": "vinaigrette", "has_image": false}
+  {"slug": "veggie-couscous", "has_image": true},
+  {"slug": "vinaigrette", "has_image": false},
+  {"slug": "yoghurt-sauce", "has_image": false}
 ]

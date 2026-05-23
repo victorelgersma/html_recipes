@@ -1,6 +1,0 @@
-
-# Recipe
-
-## Ingredients
-
-## Instructions
