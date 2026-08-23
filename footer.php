@@ -1,2 +1,3 @@
-
-<p>Contribute</a> via <a href="https://github.com/victorelgersma/html_recipes"> </a>Pull Request </a> </p>
+<footer>
+    <p><a href="https://github.com/victorelgersma/html_recipes" target="_blank">Contribute on GitHub</a></p>
+</footer>
