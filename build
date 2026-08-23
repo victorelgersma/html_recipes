@@ -4,11 +4,9 @@
 rm -rf html
 mkdir -p html
 
-# Initialize manifest file
 MANIFEST="manifest.json"
-echo "[" > $MANIFEST
+echo "[" > "$MANIFEST"
 
-# Loop through every .md file in the markdown directory
 FILES=(markdown/*.md)
 COUNT=${#FILES[@]}
 INDEX=0
@@ -17,24 +15,30 @@ for md_file in "${FILES[@]}"; do
     [ -e "$md_file" ] || continue
     filename=$(basename "$md_file" .md)
     echo "Converting $filename..."
-
-    # Run pandoc
     pandoc "$md_file" -o "html/$filename.html"
 
-    # Check if image exists (Build-time check)
-    IMAGE_URL="https://img.vjbe.net/thumbs/$filename.webp"
-    if curl --output /dev/null --silent --head --fail "$IMAGE_URL"; then
+    # Probe for images named <slug>1.webp, <slug>2.webp, ... contiguous,
+    # starting at 1. Stops at the first missing number, so the last
+    # successful index is both the count and the "last photo" index.
+    IMAGE_COUNT=0
+    n=1
+    while curl --output /dev/null --silent --head --fail "https://img.vjbe.net/${filename}${n}.webp"; do
+        IMAGE_COUNT=$n
+        n=$((n + 1))
+    done
+
+    if [ "$IMAGE_COUNT" -gt 0 ]; then
         HAS_IMAGE="true"
+        echo "  -> $IMAGE_COUNT image(s)"
     else
         HAS_IMAGE="false"
     fi
 
-    # Append to JSON manifest
     INDEX=$((INDEX + 1))
     COMMA=","
     [ $INDEX -eq $COUNT ] && COMMA=""
-    echo "  {\"slug\": \"$filename\", \"has_image\": $HAS_IMAGE}$COMMA" >> $MANIFEST
+    echo "  {\"slug\": \"$filename\", \"has_image\": $HAS_IMAGE, \"image_count\": $IMAGE_COUNT}$COMMA" >> "$MANIFEST"
 done
 
-echo "]" >> $MANIFEST
+echo "]" >> "$MANIFEST"
 echo "Done! Manifest generated and HTML converted."

@@ -15,28 +15,24 @@
             <input type="text" id="recipeSearch" placeholder="Search recipes..." autocomplete="off">
         </div>
 
-        <div class="recipe-grid" id="recipeGrid">
+        <div class="recipe-list" id="recipeGrid">
             <?php
             $manifest_file = 'manifest.json';
             if (file_exists($manifest_file)) {
                 $recipes = json_decode(file_get_contents($manifest_file), true);
 
                 usort($recipes, function ($a, $b) {
-                    return $b['has_image'] - $a['has_image'];
+                    return strcmp($a['slug'], $b['slug']);
                 });
 
                 foreach ($recipes as $recipe) {
                     $slug = $recipe['slug'];
                     $title = ucwords(str_replace('-', ' ', $slug));
-                    $thumbnail = "https://img.vjbe.net/thumbs/$slug.webp";
 
                     echo "
     <a href='recipe.php?name=$slug' class='recipe-card' data-title='" . strtolower($title) . "'>
-        <div class='card-image' style='background-image: url(\"$thumbnail\"), url(\"img/placeholder.jpg\");'></div>
-        <div class='card-content'>
-            <h3>$title</h3>
-            <span class='view-link'>View Recipe →</span>
-        </div>
+        <h3>$title</h3>
+        <span class='view-link'>View Recipe →</span>
     </a>";
                 }
             } else {

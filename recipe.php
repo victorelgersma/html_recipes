@@ -17,23 +17,34 @@
         $path = "html/$name.html";
 
         if (!empty($name) && file_exists($path)) {
-            $baseUrl = "https://img.vjbe.net/$name";
-
-            // 1. Image Carousel (Checks for slug.webp, slug2.webp, slug3.webp, etc.)
-            echo '<div class="carousel-container">
-                    <div class="carousel-track">';
-
-            // Primary Image
-            echo "<img src='$baseUrl.webp' class='carousel-img' onerror='this.remove()'>";
-
-            // Potential Gallery Images (Checks up to 5)
-            for ($i = 2; $i <= 5; $i++) {
-                echo "<img src='{$baseUrl}{$i}.webp' class='carousel-img' onerror='this.remove()'>";
+            // Look up how many images this recipe has (baked in at build
+            // time by probing https://img.vjbe.net/<slug>1.webp, <slug>2.webp, ...)
+            $imageCount = 0;
+            if (file_exists('manifest.json')) {
+                $manifest = json_decode(file_get_contents('manifest.json'), true) ?: [];
+                foreach ($manifest as $r) {
+                    if ($r['slug'] === $name) {
+                        $imageCount = $r['image_count'] ?? 0;
+                        break;
+                    }
+                }
             }
 
-            echo '  </div>
-                    <div class="carousel-hint" id="carousel-hint">Swipe for more photos ↔</div>
-                  </div>';
+            // 1. Image Carousel — numbered 1..image_count, no guessing
+            if ($imageCount > 0) {
+                $baseUrl = "https://img.vjbe.net/$name";
+
+                echo '<div class="carousel-container">
+                        <div class="carousel-track">';
+
+                for ($i = 1; $i <= $imageCount; $i++) {
+                    echo "<img src='{$baseUrl}{$i}.webp' class='carousel-img' loading='lazy' onerror='this.remove()'>";
+                }
+
+                echo '  </div>
+                        <div class="carousel-hint" id="carousel-hint">Swipe for more photos ↔</div>
+                      </div>';
+            }
 
             // 2. Recipe Content
             include($path);
@@ -44,7 +55,7 @@
                 window.onload = function() {
                     const images = document.querySelectorAll('.carousel-img');
                     const hint = document.getElementById('carousel-hint');
-                    if (images.length <= 1) {
+                    if (hint && images.length <= 1) {
                         hint.style.display = 'none';
                     }
                 };
