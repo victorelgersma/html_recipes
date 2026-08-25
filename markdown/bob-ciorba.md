@@ -1,3 +1,16 @@
+---
+images:
+  - https://img.vjbe.net/bob-ciorba1.webp
+  - https://img.vjbe.net/bob-ciorba2.webp
+  - https://img.vjbe.net/bob-ciorba3.webp
+  - https://img.vjbe.net/bob-ciorba4.webp
+  - https://img.vjbe.net/bob-ciorba5.webp
+  - https://img.vjbe.net/bob-ciorba6.webp
+  - https://img.vjbe.net/bob-ciorba7.webp
+thumbnail: https://img.vjbe.net/bob-ciorba1.webp
+---
+
+
 
 # Bob Chorba (Bulgarian Bean Soup)
 

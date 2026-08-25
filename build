@@ -5,6 +5,56 @@ rm -rf html
 mkdir -p html
 
 MANIFEST="manifest.json"
+
+# --- Frontmatter parser -----------------------------------------------
+# Reads the YAML-ish frontmatter block at the top of a markdown file and
+# prints it as JSON. Deliberately dependency-free (no PyYAML) so this
+# works on a bare python3 install. Supports:
+#   key: value
+#   key:
+#     - list item
+#     - list item
+cat > /tmp/_parse_frontmatter.py << 'PYEOF'
+import re, sys, json
+
+def parse_frontmatter(path):
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+
+    if not text.startswith("---"):
+        return {}
+
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return {}
+    fm_block = parts[1]
+
+    data = {}
+    current_list_key = None
+    for raw_line in fm_block.splitlines():
+        line = raw_line.rstrip()
+        if not line.strip():
+            continue
+        list_item = re.match(r"^\s*-\s*(.+)$", line)
+        if list_item and current_list_key:
+            data[current_list_key].append(list_item.group(1).strip())
+            continue
+        kv = re.match(r"^(\w[\w-]*):\s*(.*)$", line)
+        if kv:
+            key, value = kv.group(1), kv.group(2).strip()
+            if value == "":
+                data[key] = []
+                current_list_key = key
+            else:
+                data[key] = value
+                current_list_key = None
+    return data
+
+if __name__ == "__main__":
+    print(json.dumps(parse_frontmatter(sys.argv[1])))
+PYEOF
+# ------------------------------------------------------------------------
+
 echo "[" > "$MANIFEST"
 
 FILES=(markdown/*.md)
@@ -17,28 +67,30 @@ for md_file in "${FILES[@]}"; do
     echo "Converting $filename..."
     pandoc "$md_file" -o "html/$filename.html"
 
-    # Probe for images named <slug>1.webp, <slug>2.webp, ... contiguous,
-    # starting at 1. Stops at the first missing number, so the last
-    # successful index is both the count and the "last photo" index.
-    IMAGE_COUNT=0
-    n=1
-    while curl --output /dev/null --silent --head --fail "https://img.vjbe.net/${filename}${n}.webp"; do
-        IMAGE_COUNT=$n
-        n=$((n + 1))
-    done
+    # Read images/thumbnail out of the frontmatter (pandoc itself already
+    # strips the frontmatter block from the body HTML above, so no
+    # separate stripping step is needed here).
+    fm=$(python3 /tmp/_parse_frontmatter.py "$md_file")
+    images=$(echo "$fm" | python3 -c "import json,sys; d=json.load(sys.stdin); print(json.dumps(d.get('images', [])))")
+    thumbnail=$(echo "$fm" | python3 -c "
+import json,sys
+d = json.load(sys.stdin)
+images = d.get('images', [])
+thumb = d.get('thumbnail') or (images[0] if images else None)
+print(json.dumps(thumb))
+")
 
-    if [ "$IMAGE_COUNT" -gt 0 ]; then
-        HAS_IMAGE="true"
-        echo "  -> $IMAGE_COUNT image(s)"
-    else
-        HAS_IMAGE="false"
+    if [ "$images" != "[]" ]; then
+        echo "  -> $(echo "$images" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)))') image(s)"
     fi
 
     INDEX=$((INDEX + 1))
     COMMA=","
     [ $INDEX -eq $COUNT ] && COMMA=""
-    echo "  {\"slug\": \"$filename\", \"has_image\": $HAS_IMAGE, \"image_count\": $IMAGE_COUNT}$COMMA" >> "$MANIFEST"
+    echo "  {\"slug\": \"$filename\", \"images\": $images, \"thumbnail\": $thumbnail}$COMMA" >> "$MANIFEST"
 done
+
+rm -f /tmp/_parse_frontmatter.py
 
 echo "]" >> "$MANIFEST"
 echo "Done! Manifest generated and HTML converted."

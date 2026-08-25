@@ -1,3 +1,11 @@
+---
+images:
+  - https://img.vjbe.net/pasta-salad1.webp
+thumbnail: https://img.vjbe.net/pasta-salad1.webp
+---
+
+
+
 
 # Pasta Salad
 

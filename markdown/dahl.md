@@ -1,4 +1,7 @@
-
+---
+images:
+   - https://img.vjbe.net/dahl.webp
+---
 # Easy Red Lentil Dahl
 
 ## 🧑‍🍳 Ingredients

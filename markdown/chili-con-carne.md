@@ -1,3 +1,7 @@
+---
+images:
+  - https://img.vjbe.net/chili-con-carne-2.webp
+---
 
 # chili con carne
 

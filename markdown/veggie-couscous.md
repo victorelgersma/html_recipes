@@ -1,3 +1,9 @@
+---
+images:
+  - veggie-couscous1.webp
+thumbnail: veggie-couscous1.webp
+---
+
 
 # Veggie Couscous
 

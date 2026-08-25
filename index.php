@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Recipes</title>
-    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
+    <?php $css_version = @filemtime(__DIR__ . '/style.css') ?: time(); ?>
+    <link rel="stylesheet" href="style.css?v=<?php echo $css_version; ?>">
 </head>
 
 <body>

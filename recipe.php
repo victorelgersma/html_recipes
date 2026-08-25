@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe</title>
-    <link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css'); ?>">
+    <?php $css_version = @filemtime(__DIR__ . '/style.css') ?: time(); ?>
+    <link rel="stylesheet" href="style.css?v=<?php echo $css_version; ?>">
 </head>
 <body>
     <div class="container">
@@ -13,30 +14,34 @@
         $name = basename($_GET['name'] ?? '');
         $path = "html/$name.html";
         if (!empty($name) && file_exists($path)) {
-            // Look up how many images this recipe has (baked in at build
-            // time by probing https://img.vjbe.net/<slug>1.webp, <slug>2.webp, ...)
-            $imageCount = 0;
+            // Images now come from this recipe's markdown frontmatter,
+            // baked into manifest.json at build time (see ./build).
+            $images = [];
             if (file_exists('manifest.json')) {
                 $manifest = json_decode(file_get_contents('manifest.json'), true) ?: [];
                 foreach ($manifest as $r) {
                     if ($r['slug'] === $name) {
-                        $imageCount = $r['image_count'] ?? 0;
+                        $images = $r['images'] ?? [];
                         break;
                     }
                 }
             }
-            // 1. Image Carousel — numbered 1..image_count, no guessing
-            if ($imageCount > 0) {
-                $baseUrl = "https://img.vjbe.net/$name";
+
+            // 1. Image Carousel — full URLs listed directly in frontmatter
+            if (count($images) > 0) {
                 echo '<div class="carousel-container">
                         <div class="carousel-track">';
-                for ($i = 1; $i <= $imageCount; $i++) {
-                    echo "<img src='{$baseUrl}{$i}.webp' class='carousel-img' loading='lazy' onerror='this.remove()'>";
+
+                foreach ($images as $image) {
+                    $src = htmlspecialchars($image, ENT_QUOTES);
+                    echo "<img src='{$src}' class='carousel-img' loading='lazy' onerror='this.remove()'>";
                 }
+
                 echo '  </div>
                         <div class="carousel-hint" id="carousel-hint">Swipe for more photos ↔</div>
                       </div>';
             }
+
             // 2. Recipe Content
             include($path);
 

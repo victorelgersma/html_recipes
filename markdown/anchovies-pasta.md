@@ -1,3 +1,8 @@
+---
+images: 
+   - https://img.vjbe.net/anchovies-pasta.jpg
+   - https://img.vjbe.net/anchovies-pasta2.webp
+---
 # Anchovies Pasta
 
 Courtesy of [Nigella Lawson](https://www.ft.com/content/93114bcc-a37a-49b4-8d5e-be38707dfca9?syn-25a6b1a6=1):
