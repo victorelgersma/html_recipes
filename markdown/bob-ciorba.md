@@ -22,8 +22,8 @@
 
 1. Fry some celery, onion, carrots in olive oil
 2. Stir in the paprika
-3. Add some flour
-4. Add the grated tomatoes and cook for a few minutes until slightly thickened.
+3. Add the tomatoes and cook for a few minutes until slightly thickened.
 6. Add the canned beans and stock. Bring to a boil, then reduce to a simmer.
-7. Simmer for 20–25 minutes, add more water or stock if it gets too thick, add more flour if it is too thin
-8. Season with salt, black pepper, and chili flakes to taste.
+7. Simmer for 20–25 minutes, add more water or stock if it gets too thick. 
+8. Mix some flour with water and add that in 
+9. Season with salt, black pepper, and chili flakes to taste.

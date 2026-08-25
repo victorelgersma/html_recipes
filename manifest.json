@@ -15,7 +15,7 @@
   {"slug": "rice", "has_image": false, "image_count": 0},
   {"slug": "snijbonen", "has_image": false, "image_count": 0},
   {"slug": "steamed-broccoli", "has_image": false, "image_count": 0},
-  {"slug": "veggie-couscous", "has_image": false, "image_count": 0},
+  {"slug": "veggie-couscous", "has_image": true, "image_count": 1},
   {"slug": "vinaigrette", "has_image": false, "image_count": 0},
   {"slug": "yoghurt-sauce", "has_image": false, "image_count": 0}
 ]
