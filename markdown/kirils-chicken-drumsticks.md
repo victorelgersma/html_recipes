@@ -1,3 +1,7 @@
+---
+images:
+ - https://img.vjbe.net/kirils-chicken-drumsticks.jpeg
+---
 
 # Crispy Oven Chicken Drumsticks
 

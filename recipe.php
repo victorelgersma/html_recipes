@@ -27,7 +27,10 @@
                 }
             }
 
-            // 1. Image Carousel — full URLs listed directly in frontmatter
+            // 1. Recipe Content
+            include($path);
+
+            // 2. Image Carousel — full URLs listed directly in frontmatter
             if (count($images) > 0) {
                 echo '<div class="carousel-container">
                         <div class="carousel-track">';
@@ -41,9 +44,6 @@
                         <div class="carousel-hint" id="carousel-hint">Swipe for more photos ↔</div>
                       </div>';
             }
-
-            // 2. Recipe Content
-            include($path);
 
             // 3. Small Script to hide hint if only one image exists,
             //    AND persist checklist state to localStorage per recipe.

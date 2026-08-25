@@ -1,9 +1,8 @@
 
 # Eggs (soft boiled)
 
+## Ingredients
 
-Needed:
-
-1. 6 minutes
-2. Egg
+- [ ] 6 minutes
+- [ ] Egg
 

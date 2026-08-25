@@ -7,7 +7,7 @@ images:
   - https://img.vjbe.net/bob-ciorba5.webp
   - https://img.vjbe.net/bob-ciorba6.webp
   - https://img.vjbe.net/bob-ciorba7.webp
-thumbnail: https://img.vjbe.net/bob-ciorba1.webp
+thumbnail: https://img.vjbe.net/bob-ciorba7.webp
 ---
 
 

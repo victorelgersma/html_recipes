@@ -16,7 +16,7 @@
             <input type="text" id="recipeSearch" placeholder="Search recipes..." autocomplete="off">
         </div>
 
-        <div class="recipe-list" id="recipeGrid">
+        <div class="recipe-grid" id="recipeGrid">
             <?php
             $manifest_file = 'manifest.json';
             if (file_exists($manifest_file)) {
@@ -30,10 +30,23 @@
                     $slug = $recipe['slug'];
                     $title = ucwords(str_replace('-', ' ', $slug));
 
+                    // Thumbnail, falling back to the first image, falling
+                    // back to no image at all.
+                    $thumb = $recipe['thumbnail'] ?? ($recipe['images'][0] ?? null);
+
+                    $imageHtml = '';
+                    if (!empty($thumb)) {
+                        $src = htmlspecialchars($thumb, ENT_QUOTES);
+                        $imageHtml = "<div class='card-image'><img src='{$src}' alt='' loading='lazy' onerror=\"this.closest('.card-image').remove()\"></div>";
+                    }
+
                     echo "
     <a href='recipe.php?name=$slug' class='recipe-card' data-title='" . strtolower($title) . "'>
-        <h3>$title</h3>
-        <span class='view-link'>View Recipe →</span>
+        {$imageHtml}
+        <div class='card-body'>
+            <h3>$title</h3>
+            <span class='view-link'>View Recipe →</span>
+        </div>
     </a>";
                 }
             } else {

@@ -1,70 +1,9 @@
-  :root {
+:root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --accent: #f7b538;
     --text: #e1e1e1;
     --muted: #a0a0a0;
-  }
-
-  /* Add this to the bottom of your <style> block in style.php */
-
-  .search-container {
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-
-  #recipeSearch {
-    width: 100%;
-    padding: 12px 20px;
-    background-color: #2a2a2a;
-    border: 2px solid #333;
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  #recipeSearch:focus {
-    border-color: var(--accent);
-  }
-
-  #recipeSearch::placeholder {
-    color: var(--muted);
-  }
-
-  .recipe-card {
-    overflow: hidden;
-    /* Keeps the image inside the border radius */
-  }
-
-
-
-  .hero-image {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-  }
-
-  .recipe-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-
-  .gallery-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
-
-  ul li:has(input[type=checkbox]:checked) {
-    text-decoration: line-through;
-    color: var(--muted);
   }
 
   * {
@@ -104,6 +43,133 @@
     font-weight: 600;
   }
 
+  .container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Search bar */
+
+  .search-container {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  #recipeSearch {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #2a2a2a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #recipeSearch:focus {
+    border-color: var(--accent);
+  }
+
+  #recipeSearch::placeholder {
+    color: var(--muted);
+  }
+
+  /* Recipe index grid */
+
+  .recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .recipe-card {
+    background: #2a2a2a;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .recipe-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .card-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    display: block;
+  }
+
+  .card-body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .card-body h3 {
+    color: var(--text);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .view-link {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .recipe-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .recipe-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card-body {
+      padding: 0.85rem 1rem;
+    }
+  }
+
+  /* Recipe page: ingredient / instruction lists */
+
   ul,
   ol {
     list-style-position: inside;
@@ -127,7 +193,11 @@
     align-items: flex-start;
   }
 
-  /* Checkbox styling */
+  ul li:has(input[type=checkbox]:checked) {
+    text-decoration: line-through;
+    color: var(--muted);
+  }
+
   input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -157,7 +227,6 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Improved checkbox and label alignment */
   li label {
     display: flex;
     align-items: flex-start;
@@ -167,19 +236,15 @@
   li input[type="checkbox"] {
     margin-right: 8px;
     margin-top: 0.25rem;
-    /* Align with first line of text */
     flex: 0 0 auto;
-    /* Prevent checkbox from shrinking */
   }
 
-  /* This creates the text block that will wrap properly */
   li label::after {
     content: "";
     display: block;
     flex: 1;
   }
 
-  /* Instructions section */
   ol {
     counter-reset: item;
     list-style-type: none;
@@ -200,31 +265,30 @@
     text-align: right;
   }
 
-  /* Media queries for responsiveness */
-  @media (max-width: 700px) {
-    .container {
-      padding: 1.5rem;
-      margin: 1rem auto;
-    }
+  /* Recipe page: hero / gallery images (used within recipe body content) */
 
-    h1 {
-      font-size: 1.8rem;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Make the whole page wrap content nicely */
-  html,
-  body {
+  .hero-image {
     width: 100%;
-    margin: 0;
-    padding: 0;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
   }
 
-  /* Image and Figure Styling */
+  .recipe-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
   figure {
     margin: 2rem 0;
     text-align: center;
@@ -246,40 +310,16 @@
     margin-top: 0.8rem;
   }
 
-  /* Horizontal Rule Styling */
   hr {
     border: 0;
     border-top: 1px solid #333;
     margin: 2rem 0;
   }
 
-
-  .recipe-card {
-    background: #2a2a2a;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: transform 0.2s, border-color 0.2s;
-    border: 1px solid transparent;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .recipe-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-  }
-
-
-
-  .view-link {
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: bold;
-  }
-
+  /* Recipe page: image carousel */
 
   .carousel-container {
-    margin-bottom: 2rem;
+    margin-top: 2rem;
   }
 
   .carousel-track {
@@ -291,7 +331,6 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Hide scrollbars */
   .carousel-track::-webkit-scrollbar {
     display: none;
   }
@@ -314,84 +353,19 @@
     font-style: italic;
   }
 
-  /* 1. Expand the container to allow 3 columns */
-  .container {
-    width: 95%;
-    max-width: 1000px;
-    /* Increased from 650px */
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
+  /* Responsiveness */
 
-
-
-  /* 4. Responsive adjustment: 2 columns on tablets, 1 on mobile */
-  @media (max-width: 900px) {
-    .recipe-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .recipe-grid {
-      grid-template-columns: 1fr;
-    }
-
+  @media (max-width: 700px) {
     .container {
-      padding: 1rem;
+      padding: 1.5rem;
+      margin: 1rem auto;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
     }
   }
-
-
-.recipe-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.recipe-card {
-  background: #2a2a2a;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: transform 0.2s, border-color 0.2s;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-}
-
-.recipe-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-}
-
-.recipe-card h3 {
-  color: var(--text);
-  font-size: 1.15rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  margin: 0;
-}
-
-.view-link {
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: bold;
-  white-space: nowrap;
-  margin-left: 1rem;
-}
-
-@media (max-width: 600px) {
-  .recipe-card {
-    padding: 1rem;
-  }
-
-  .recipe-card h3 {
-    font-size: 1rem;
-  }
-}
